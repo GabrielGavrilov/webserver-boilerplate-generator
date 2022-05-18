@@ -2,6 +2,7 @@
 #include <string>
 #include <direct.h>
 #include "ExpressBoilerplate.cpp"
+#include "FlaskBoilerplate.cpp"
 
 using namespace std;
 
@@ -28,6 +29,29 @@ void chooseExpressOption() {
 
 }
 
+void chooseFlaskOption() {
+
+	FlaskBoilerplate f;
+
+	string folderLocationString;
+	const char* folderLocation;
+
+	std::cout << "\nEnter location where flask boilerplate is to be created: ";
+	std::cin >> folderLocationString;
+
+	folderLocation = folderLocationString.c_str();
+
+	if (_mkdir(folderLocation) == -1) {
+		std::cout << "There has been an issue creatng the flask boilerplate folder." << endl;
+	}
+	else {
+		std::cout << "\n-- Flask boilerplate folder created..." << endl;
+		f.createFlaskBoilerplateFiles(folderLocationString);
+		f.updateFlaskBoilerplateFiles(folderLocationString);
+	}
+
+}
+
 int main() {
 
 	string inputString;
@@ -44,6 +68,13 @@ int main() {
 	switch (inputInt) {
 		case 1:
 			chooseExpressOption();
+			break;
+		case 2:
+			chooseFlaskOption();
+			break;
+		default:
+			std::cout << "\nPlease choose the right option." << endl;
+			break;
 	}
 
 	return 0;

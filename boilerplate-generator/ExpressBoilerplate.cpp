@@ -59,6 +59,8 @@ class ExpressBoilerplate {
 				appStream << line << endl;
 			}
 
+			std::cout << "-- App file updated..." << endl;
+
 		}
 
 };
